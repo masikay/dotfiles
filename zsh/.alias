@@ -1,0 +1,13 @@
+alias -g vi="nvim"
+alias -g vim="nvim"
+
+alias ls="exa"
+alias la="ls -lah"
+alias lart="ls -lar -snew"
+
+# Quick Edits
+alias ae="vi $ZDOTDIR/.alias"
+alias ze="vi $ZDOTDIR/.zshrc"
+
+# Relaunch zsh
+alias xz="exec zsh"
