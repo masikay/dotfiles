@@ -1,6 +1,6 @@
-@angular/cli
-npm
-eslint
-live-server
-nodemon
-yarn
+#@angular/cli
+#npm
+#eslint
+#live-server
+#nodemon
+#yarn

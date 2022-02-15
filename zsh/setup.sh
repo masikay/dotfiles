@@ -1,4 +1,4 @@
-#! /usr/bin/env sh
+#! /usr/bin/env bash
 
 sudo -v
 
@@ -17,10 +17,10 @@ substep_info "Creating zsh config folders..."
 mkdir -p "$DESTINATION/custom/plugins"
 mkdir -p "$DESTINATION/custom/themes"
 
-symlink $SOURCE/.zshenv ~/.zshenv
+symlink $SOURCE/zshenv ~/.zshenv
 
-find .* -name ".*" ! -name ".zshenv" | while read fn; do
-    symlink "$SOURCE/$fn" "$DESTINATION/$fn"
+find * -name "*rc" -o -name "*.zsh" | while read fn; do
+    symlink "$SOURCE/$fn" "$DESTINATION/.$fn"
 done
 clear_broken_symlinks "$DESTINATION"
 
@@ -40,7 +40,7 @@ set_zsh_shell() {
             fi
         fi
         substep_info "Changing shell to zsh"
-        if chsh -s $ZSH_PATH; then
+        if sudo chsh -s "$ZSH_PATH" "$USER"; then
             substep_success "Changed shell to zsh"
         else
             substep_error "Failed changing shell to zsh"

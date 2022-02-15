@@ -1,4 +1,4 @@
-#! /usr/bin/env sh
+#! /usr/bin/env bash
 
 DIR=$(dirname "$0")
 cd "$DIR"
@@ -11,10 +11,8 @@ sudo -v
 
 info "Installing Debian/Ubuntu packages..."
 
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-sudo apt-add-repository https://cli.github.com/packages
-sudo apt update && sudo apt upgrade
-sudo apt -y install < pkglist
+sudo apt update && sudo apt -y upgrade
+sudo apt -y install $(cat pkglist)
 
 success "Finished installing Debian/Ubuntu packages."
 

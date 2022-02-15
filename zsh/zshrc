@@ -112,7 +112,7 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-[[ ! -f $ZDOTDIR/.alias ]] || source $ZDOTDIR/.alias
+[[ ! -f $ZDOTDIR/.aliasrc ]] || source $ZDOTDIR/.aliasrc
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
