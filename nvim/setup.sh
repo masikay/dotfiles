@@ -10,7 +10,7 @@ cd "$DIR"
 SOURCE="$(realpath .)"
 DESTINATION="$(realpath ~/.config/nvim)"
 
-substep_info "Creating nvim config folder..."
+info "Creating nvim config folder..."
 mkdir -p "$DESTINATION"
 
 symlink $SOURCE/zshenv ~/.zshenv
