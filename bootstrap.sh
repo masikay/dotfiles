@@ -10,7 +10,7 @@ os_family() {
     if [ "${OS}" = "Darwin" ]; then
         OS_FAMILY=macos
     elif [ "${OS}" = "Linux" ]; then
-        OS_FAMILY=$(grep ID_LIKE /etc/os-release |  cut -d= -f2 | sed "s/\"//g")
+        OS_FAMILY=$(grep -E "^ID=" /etc/os-release |  cut -d= -f2 | sed "s/\"//g")
     elif echo ${OS} | grep CYGWIN_NT; then
         OS_FAMILY=cygwin
     elif echo ${OS} | grep MSYS_NT; then
@@ -39,21 +39,26 @@ SKIP=""
 if [ "$OS" == "macos" ]; then
     ./macos/packages/setup.sh
     SKIP="linux"
-elif [ "$OS" == "debian" ]; then
-    ./linux/debian/packages/setup.sh
+elif [ "$OS" == "ubuntu" ]; then
+    ./linux/ubuntu/packages/setup.sh
     SKIP="macos"
-elif [ "$OS" == "arch" ]; then
-    ./linux/arch/packages/setup.sh
+elif [ "$OS" == "manjaro" ]; then
+    ./linux/manjaro/packages/setup.sh
     SKIP="macos"
 fi
 
-if [ "$OS" == "macos" -o "$OS" == "arch" -o "$OS" == "debian" ]; then
+if [ "$OS" == "macos" -o "$OS" == "manjaro" -o "$OS" == "ubuntu" ]; then
     ./packages/setup.sh
 fi
 
-find * -name "setup.sh" -not -wholename "*packages*" -not -wholename "$SKIP*" | while read setup; do
+find * -name "setup.sh" -not -wholename "*packages*" -not -wholename "$SKIP*" -not -wholename "*oh-my-zsh-git" | while read setup; do
     ./$setup
 done
+
+if [ "$OS" == "macos" -o "$OS" == "ubuntu" ]; then
+    ./zsh/oh-my-zsh-git/setup.sh
+fi
+
 
 SOURCE=$(realpath .)
 DESTINATION=$(realpath ~)
