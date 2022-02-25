@@ -51,14 +51,9 @@ if [ "$OS" == "macos" -o "$OS" == "manjaro" -o "$OS" == "ubuntu" ]; then
     ./packages/setup.sh
 fi
 
-find * -name "setup.sh" -not -wholename "*packages*" -not -wholename "$SKIP*" -not -wholename "*oh-my-zsh-git" | while read setup; do
+find * -name "setup.sh" -not -wholename "*packages*" -not -wholename "$SKIP*" | while read setup; do
     ./$setup
 done
-
-if [ "$OS" == "macos" -o "$OS" == "ubuntu" ]; then
-    ./zsh/oh-my-zsh-git/setup.sh
-fi
-
 
 SOURCE=$(realpath .)
 DESTINATION=$(realpath ~)

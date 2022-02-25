@@ -2,7 +2,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # zsh locations
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-export ZSH=$ZDOTDIR/.oh-my-zsh
+export ZSH="${ZDOTDIR:-$HOME}/.oh-my-zsh"
 
 # Added locations to path variable
 export PATH=$PATH:$HOME/.local/bin

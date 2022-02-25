@@ -1,12 +1,11 @@
 github-cli
 mc
 neofetch
+neovim
 nodejs
 npm
 nodejs
-oh-my-zsh
 pamac-cli
-powerlevel9k
 python3
 pyton3-pip
 tree
@@ -16,6 +15,3 @@ xsel
 yarn
 zip
 zsh
-zsh-autosuggestions
-zsh-history-substring-search
-zsh-syntax-highlighting
