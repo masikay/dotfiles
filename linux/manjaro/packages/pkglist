@@ -1,4 +1,6 @@
+exa
 github-cli
+htop
 mc
 neofetch
 neovim
@@ -6,6 +8,7 @@ nodejs
 npm
 nodejs
 pamac-cli
+pkgfile
 python3
 pyton3-pip
 tree
@@ -13,5 +16,6 @@ unzip
 xclip
 xsel
 yarn
+yay
 zip
 zsh

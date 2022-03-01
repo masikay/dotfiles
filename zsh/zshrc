@@ -74,15 +74,15 @@ ZSH_CUSTOM="${ZDOTDIR:-$ZSH}/custom"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)
+plugins=(command-not-found git sudo z zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # Offer to install missing package if command is not found
-if [[ -r /etc/zsh_command_not_found ]]; then
-    source /etc/zsh_command_not_found
-    #export PKGFILE_PROMPT_INSTALL_MISSING=1
-fi
+#if [[ -r /etc/zsh_command_not_found ]]; then
+#    source /etc/zsh_command_not_found
+#    #export PKGFILE_PROMPT_INSTALL_MISSING=1
+#fi
 
 # User configuration
 

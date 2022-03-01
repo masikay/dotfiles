@@ -1,7 +1,16 @@
 alias -g vi="nvim"
 alias -g vim="nvim"
 
-alias ls="ls --group-directories-first --color=auto"
+EXA=$(which exa)
+if [ "$EXA" != "" ]; then
+    alias ls="$EXA --group-directories-first --color=auto --icons -F"
+    alias tree="$EXA --color=auto --icons --tree"
+	alias lart="ls -larF -snew"
+else
+    alias ls="ls --group-directories-first --color=auto -F"
+	alias lart="ls -lart"
+fi
+
 alias la="ls -la"
 
 # Quick Edits
