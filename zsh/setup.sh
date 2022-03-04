@@ -49,29 +49,6 @@ set_zsh_shell() {
     fi
 }
 
-clone_git_repo() {
-    repo_url=$1
-    dest_dir=$2
-    depth="--depth 1"
-
-    if [ "$3" == "full" ]; then
-        depth=""
-    fi
-
-    if [ -e $dest_dir ]; then
-        success "$repo_url repo is already installed."
-    else
-        substep_info "Cloning $repo_url"
-        if git clone $depth $repo_url $dest_dir; then
-            substep_success "$repor_url repo successfully cloned."
-        else
-            substep_error "Failed cloning $repo_url repo."
-            return 3
-        fi
-    fi
-}
-
-
 if set_zsh_shell; then
     success "Successfully set up zsh shell."
 else

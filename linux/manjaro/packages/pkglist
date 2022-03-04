@@ -1,3 +1,5 @@
+docker
+docker-compose
 exa
 github-cli
 htop
@@ -10,7 +12,7 @@ nodejs
 pamac-cli
 pkgfile
 python3
-pyton3-pip
+python-pip
 tree
 unzip
 xclip

@@ -5,7 +5,7 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export ZSH="${ZDOTDIR:-$HOME}/.oh-my-zsh"
 
 # Added locations to path variable
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 # Vagrant config needed inside WSL2
 export VAGRANT_DEFAULT_PROVIDER="hyperv"

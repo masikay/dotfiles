@@ -78,12 +78,6 @@ plugins=(command-not-found git sudo z zsh-autosuggestions zsh-history-substring-
 
 source $ZSH/oh-my-zsh.sh
 
-# Offer to install missing package if command is not found
-#if [[ -r /etc/zsh_command_not_found ]]; then
-#    source /etc/zsh_command_not_found
-#    #export PKGFILE_PROMPT_INSTALL_MISSING=1
-#fi
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -113,3 +107,7 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+# Set the socket file for docker
+export DOCKER_SOCK="/mnt/wsl/shared-docker/docker.sock"
+export DOCKER_HOST="unix://$DOCKER_SOCK"

@@ -52,6 +52,7 @@ if [ "$OS" == "macos" -o "$OS" == "manjaro" -o "$OS" == "ubuntu" ]; then
 fi
 
 find * -name "setup.sh" -not -wholename "*packages*" -not -wholename "$SKIP*" | while read setup; do
+    echo $setup
     ./$setup
 done
 
