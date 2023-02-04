@@ -1,5 +1,13 @@
+apt-transport-https
+ca-certificates
+containerd.io
+docker-ce
+docker-ce-cli
+docker-compose
 gh
+gnupg
 htop
+lsb-release
 mc
 neofetch
 neovim
