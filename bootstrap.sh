@@ -35,23 +35,26 @@ else
 fi
 
 SKIP=""
+SKIP_DOCKER="dummy"
+
 # Package control must be executed first in order for the rest to work
 if [ "$OS" == "macos" ]; then
     ./macos/packages/setup.sh
     SKIP="linux"
-elif [ "$OS" == "ubuntu" ]; then
-    ./linux/ubuntu/packages/setup.sh
-    SKIP="macos"
-elif [ "$OS" == "manjaro" ]; then
-    ./linux/manjaro/packages/setup.sh
+else
+    ./linux/$OS/packages/setup.sh
     SKIP="macos"
 fi
 
-if [ "$OS" == "macos" -o "$OS" == "manjaro" -o "$OS" == "ubuntu" ]; then
+if [ "$OS" == "macos" -o "$OS" == "manjaro" -o "$OS" == "ubuntu" -o "$OS" == "nobara" ]; then
     ./packages/setup.sh
 fi
 
-find * -name "setup.sh" -not -wholename "*packages*" -not -wholename "$SKIP*" | while read setup; do
+if [ "$OS" == "nobara" ]; then
+    SKIP_DOCKER="docker"
+fi
+
+find * -name "setup.sh" -not -wholename "*packages*" -not -wholename "$SKIP*" -not -wholename "$SKIP_DOCKER*" | while read setup; do
     echo $setup
     ./$setup
 done
