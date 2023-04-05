@@ -9,9 +9,9 @@ COMMENT=\#*
 
 sudo -v
 
-info "Installing Fedora/Nobara packages ..."
+info "Installing Fedora packages ..."
 sudo dnf update -y
 sudo dnf upgrade -y
 sudo dnf install -y $(cat pkglist)
-success "Finished installing Fedora/Nobara packages."
+success "Finished installing Fedora packages."
 

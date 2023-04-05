@@ -46,11 +46,11 @@ else
     SKIP="macos"
 fi
 
-if [ "$OS" == "macos" -o "$OS" == "manjaro" -o "$OS" == "ubuntu" -o "$OS" == "nobara" ]; then
+if [ "$OS" == "macos" -o "$OS" == "manjaro" -o "$OS" == "ubuntu" -o "$OS" == "fedora" ]; then
     ./packages/setup.sh
 fi
 
-if [ "$OS" == "nobara" ]; then
+if [ "$OS" == "fedora" ]; then
     SKIP_DOCKER="docker"
 fi
 

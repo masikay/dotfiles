@@ -8,7 +8,7 @@ cd "$DIR"
 . ../scripts/functions.sh
 
 SOURCE="$(realpath .)"
-DESTINATION=$XDG_CONFIG_HOME
+DESTINATION="$HOME/.config"
 STARSHIP_PATH=$(which starship)
 
 info "Setting up starship prompt..."
