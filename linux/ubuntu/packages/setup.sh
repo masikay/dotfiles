@@ -16,6 +16,12 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] 
 sudo apt update && sudo apt -y upgrade
 sudo apt -y install $(cat pkglist)
 
+substep_info "Installing lsd ..."
+LSD_VERSION=$(curl -s "https://api.github.com/repos/lsd-rs/lsd/releases/latest" | grep -Po '"tag_name": "\K[0-9.]+')
+curl -Lo lsd.deb "https://github.com/olsd-rs/lsd/releases/latest/download/lsd_${LSD_VERSION}_amd64.deb"
+sudo dpkg -i lsd.deb
+rm -rf lsd.deb
+
 substep_info "Installing exa ..."
 EXA_VERSION=$(curl -s "https://api.github.com/repos/ogham/exa/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+')
 curl -Lo exa.zip "https://github.com/ogham/exa/releases/latest/download/exa-linux-x86_64-v${EXA_VERSION}.zip"

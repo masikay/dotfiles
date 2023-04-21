@@ -3,6 +3,7 @@ docker-compose
 exa
 github-cli
 htop
+lsd
 mc
 neofetch
 neovim
