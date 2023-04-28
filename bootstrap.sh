@@ -22,7 +22,7 @@ os_family() {
     echo ${OS_FAMILY}
 }
 
-# Check if running on macOS or Linux (and whcich Linux derivative)
+# Check if running on macOS or Linux (and which Linux distro/derivates)
 OS=$(os_family)
 
 info "Prompting for sudo password..."
@@ -37,6 +37,16 @@ fi
 SKIP=""
 SKIP_DOCKER="dummy"
 
+# Fedora derivates
+if [ "$OS" == "nobara" ]; then
+    OS="fedora"
+fi
+
+# Arch derivates
+if [ "$OS" == "manjaro" -o $OS == "endeavouros" ]; then
+    OS="arch"
+fi
+
 # Package control must be executed first in order for the rest to work
 if [ "$OS" == "macos" ]; then
     ./macos/packages/setup.sh
@@ -46,11 +56,11 @@ else
     SKIP="macos"
 fi
 
-if [ "$OS" == "macos" -o "$OS" == "manjaro" -o "$OS" == "ubuntu" -o "$OS" == "fedora" ]; then
+if [ "$OS" == "macos" -o "$OS" == "arch" -o "$OS" == "ubuntu" -o "$OS" == "fedora" ]; then
     ./packages/setup.sh
 fi
 
-if [ "$OS" == "fedora" ]; then
+if [ "$OS" == "fedora" -o "$OS" == "arch" ]; then
     SKIP_DOCKER="docker"
 fi
 
