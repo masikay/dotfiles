@@ -15,7 +15,10 @@ else
 	alias lart="ls -lart"
 fi
 
-alias la="ls -la"
+# Replace some more things with better alternatives
+alias cat='bat --style header --style snip --style changes --style header'
+[ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
+
 
 # Quick Edits
 alias ae="vi $ZDOTDIR/.alias"
@@ -23,3 +26,6 @@ alias ze="vi $ZDOTDIR/.zshrc"
 
 # Relaunch zsh
 alias xz="exec zsh"
+
+# Get the error messages from journalctl
+alias jctl="journalctl -p 3 -xb"

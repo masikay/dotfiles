@@ -1,4 +1,5 @@
 apt-transport-https
+bat
 ca-certificates
 containerd.io
 docker-ce
@@ -9,6 +10,7 @@ gnupg
 htop
 lsb-release
 mc
+mcfly
 neofetch
 neovim
 nodejs

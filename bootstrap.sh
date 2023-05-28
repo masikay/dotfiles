@@ -35,7 +35,7 @@ else
 fi
 
 SKIP=""
-SKIP_DOCKER="dummy"
+SKIP_DOCKER="-not -wholename \"docker*\""
 
 # Fedora derivates
 if [ "$OS" == "nobara" ]; then
@@ -43,7 +43,7 @@ if [ "$OS" == "nobara" ]; then
 fi
 
 # Arch derivates
-if [ "$OS" == "manjaro" -o $OS == "endeavouros" ]; then
+if [ "$OS" == "manjaro" -o $OS == "endeavouros" -o $OS == "garuda" ]; then
     OS="arch"
 fi
 
@@ -60,11 +60,7 @@ if [ "$OS" == "macos" -o "$OS" == "arch" -o "$OS" == "ubuntu" -o "$OS" == "fedor
     ./packages/setup.sh
 fi
 
-if [ "$OS" == "fedora" -o "$OS" == "arch" ]; then
-    SKIP_DOCKER="docker"
-fi
-
-find * -name "setup.sh" -not -wholename "*packages*" -not -wholename "$SKIP*" -not -wholename "$SKIP_DOCKER*" | while read setup; do
+find * -name "setup.sh" -not -wholename "*packages*" -not -wholename "$SKIP*" | while read setup; do
     echo $setup
     ./$setup
 done

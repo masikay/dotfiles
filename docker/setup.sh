@@ -7,8 +7,13 @@ cd "$DIR"
 
 . ../scripts/functions.sh
 
+if ! grep -qi microsoft /proc/version; then
+    info "No WSL installation: skip docker WSL setup"
+    exit 0
+fi 
+
 SOURCE="$(realpath .)"
-DESTINATION="$(realpath ~/bin)"
+DESTINATION="$(realpath ~/.local/bin)"
 
 info "Setting up docker ..."
 
