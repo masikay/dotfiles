@@ -45,3 +45,4 @@ export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_RESULTS_SORT=LAST_RUN
 eval "$(mcfly init zsh)"
 
+[[ ! -f $ZDOTDIR/.zshrc.local ]] || source $ZDOTDIR/.zshrc.local

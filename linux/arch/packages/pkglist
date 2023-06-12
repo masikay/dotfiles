@@ -2,6 +2,7 @@ bat
 docker
 docker-compose
 exa
+fastfetch
 github-cli
 htop
 lsd
@@ -21,5 +22,5 @@ xclip
 xsel
 yarn
 yay
-zip
+zip 
 zsh
