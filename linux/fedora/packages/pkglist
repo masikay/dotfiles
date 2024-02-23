@@ -1,4 +1,5 @@
 bat
+btop
 exa
 gh
 htop
@@ -6,6 +7,7 @@ lsd
 mc
 neofetch
 neovim
+nfs-utils
 python3
 python3-pip
 tree
