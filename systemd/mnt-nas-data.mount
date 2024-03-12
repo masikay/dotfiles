@@ -1,0 +1,14 @@
+[Unit]
+Description=NAS Data mount
+After=network-online.target
+Wants=network-online.target
+
+[Mount]
+What=192.168.0.70:/volume1/Data
+Where=/mnt/nas/data
+Options=defaults
+Type=nfs
+TimeoutSec=10
+
+[Install]
+WantedBy=multi-user.target

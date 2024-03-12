@@ -43,7 +43,7 @@ if [ "$OS" == "nobara" ]; then
 fi
 
 # Arch derivates
-if [ "$OS" == "manjaro" -o $OS == "endeavouros" -o $OS == "garuda" ]; then
+if [ "$OS" == "manjaro" -o $OS == "endeavouros" -o $OS == "cachyos" -o $OS == "garuda" ]; then
     OS="arch"
 fi
 

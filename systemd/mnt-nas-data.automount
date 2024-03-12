@@ -1,0 +1,9 @@
+[Unit]
+Description=Automount for NAS Data mount
+
+[Automount]
+Where=/mnt/nas/data
+TimeoutIdleSec=120
+
+[Install]
+WantedBy=multi-user.target
