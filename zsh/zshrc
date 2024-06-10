@@ -1,48 +1,83 @@
-## Path section
-# Set $PATH if ~/.local/bin exist
-if [ -d "$HOME/.local/bin" ]; then
-    export PATH=$HOME/.local/bin:$PATH
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
+
+# Set the directory where to store zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Download Zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-eval "$(starship init zsh)"
-function set_win_title(){
-    echo -ne "\033]0; $USER@$HOST:${PWD/$HOME/~} \007"
-}
-precmd_functions+=(set_win_title)
+# Source/load zinit
+source "$ZINIT_HOME/zinit.zsh"
+
+# Add in Powerlevel10k
+# zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# If not installed yet, install Starship
+STARSHIP=$(which starship)
+if [[ $STARSHIP =~ "not found" ]]; then
+  curl -sS https://starship.rs/install.sh | sh
+fi
 
 
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM="${ZDOTDIR:-$ZSH}/custom"
+# Add in zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(command-not-found git sudo z zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)
+# Add in snippets
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::archlinux
+zinit snippet OMZP::command-not-found
 
-source $ZSH/oh-my-zsh.sh
+# Load cmmpletions
+autoload -U compinit && compinit
 
-# Advanced command-not-found hook
-[[ -e /usr/share/doc/find-the-command/ftc.zsh ]] && source /usr/share/doc/find-the-command/ftc.zsh
-
-
-[[ ! -f $ZDOTDIR/.aliasrc ]] || source $ZDOTDIR/.aliasrc
+zinit cdreplay -q
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 #[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
-# For WSL, share the same docker socket between different WSL distributions)
-if [[ -f /mnt/wsl/shared-docker/docker.sock ]]; then  
-  export DOCKER_SOCK="/mnt/wsl/shared-docker/docker.sock"
-  export DOCKER_HOST="unix://$DOCKER_SOCK"
-fi
+# Keybindings
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-foward
 
-# Load Mcfly
-#export MCFLY_FUZZY=true
-#export MCFLY_RESULTS=20
-#export MCFLY_INTERFACE_VIEW=BOTTOM
-#export MCFLY_RESULTS_SORT=LAST_RUN
-#eval "$(mcfly init zsh)"
+# History
+HISTSIZE=5000
+HISTFILE="${ZDOTDIR}/.zsh_history"
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
 
-[[ ! -f $ZDOTDIR/.zshrc.local ]] || source $ZDOTDIR/.zshrc.local
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete::__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# Aliases
+[[ ! -f $ZDOTDIR/.aliasrc ]] || source $ZDOTDIR/.aliasrc
+
+# Shell integrations
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+
+# Starship prompt
+eval "$(starship init zsh)"

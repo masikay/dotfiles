@@ -1,26 +1,25 @@
 alias -g vi="nvim"
 alias -g vim="nvim"
 
-LSD="$(which lsd)"
-EXA=$(which exa)
-if ! [[ "$LSD" =~ ".*not found" ]]; then
-    alias ls="$LSD --group-directories-first --color=auto -F"
-    alias tree="$LSD --color=auto --tree"
-elif ! [[ "$EXA" =~ ".*not found" ]]; then
-    alias ls="$EXA --group-directories-first --color=auto --icons -F"
-    alias tree="$EXA --color=auto --icons --tree"
+EZA=$(which eza)
+if ! [[ "$EZA" =~ ".*not found" ]]; then
+    alias ls="$EZA --group-directories-first --color=auto --icons -F"
+    alias tree="$EZA --color=auto --icons --tree"
 	alias lart="ls -larF -snew"
 else
     alias ls="ls --group-directories-first --color=auto -F"
 	alias lart="ls -lart"
 fi
 
+alias la="ls -a"
+alias ll="ls -l"
+
 # Replace some more things with better alternatives
 alias cat='bat --style header --style snip --style changes --style header'
 
 
 # Quick Edits
-alias ae="vi $ZDOTDIR/.alias"
+alias ae="vi $ZDOTDIR/.aliasrc"
 alias ze="vi $ZDOTDIR/.zshrc"
 
 # Relaunch zsh
