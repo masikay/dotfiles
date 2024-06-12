@@ -40,7 +40,7 @@ zinit snippet OMZP::archlinux
 zinit snippet OMZP::command-not-found
 
 # Load cmmpletions
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
 
 zinit cdreplay -q
 
@@ -50,7 +50,8 @@ zinit cdreplay -q
 # Keybindings
 bindkey -e
 bindkey '^p' history-search-backward
-bindkey '^n' history-search-foward
+bindkey '^n' history-search-forward
+bindkey '^[w' kill-region
 
 # History
 HISTSIZE=5000
@@ -78,6 +79,9 @@ zstyle ':fzf-tab:complete::__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+
+# Flash neofetch
+neofetch
 
 # Starship prompt
 eval "$(starship init zsh)"
