@@ -1,9 +1,11 @@
+alacritty
 bat
 btop
-exa
+eza
+fd-find
 gh
 htop
-lsd
+kitty
 mc
 neofetch
 neovim
@@ -16,4 +18,5 @@ util-linux-user
 xclip
 xsel
 zip
+zoxide
 zsh

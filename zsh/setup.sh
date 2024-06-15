@@ -14,6 +14,7 @@ ZSH_PATH=$(which zsh)
 info "Setting up zsh shell..."
 
 symlink $SOURCE/zshenv ~/.zshenv
+create_dir $DESTINATION
 
 find * -name "*rc" -o -name "*.zsh" | while read fn; do
     symlink "$SOURCE/$fn" "$DESTINATION/.$fn"

@@ -92,3 +92,12 @@ clone_git_repo() {
         fi
     fi
 }
+
+create_dir() {
+    dir=$1
+
+    if [ ! -d $dir ]; then
+        info "Create directory $dir"
+        mkdir -p $dir
+    fi
+}
