@@ -4,6 +4,10 @@ import = [
   # "~/.config/alacritty/catppuccin-frappe.toml"
   # "~/.config/alacritty/catppuccin-macchiato.toml"
   "~/.config/alacritty/catppuccin-mocha.toml"
+  # "~/.config/alacritty/tokyonight_day.toml"
+  # "~/.config/alacritty/tokyonight_moon.toml"
+  # "~/.config/alacritty/tokyonight_night.toml"
+  # "~/.config/alacritty/tokyonight_storm.toml"
 ]
 
 live_config_reload = true
@@ -75,19 +79,19 @@ multiplier = 3
 size = 12
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono Nerd Font Mono"
 style = "Regular"
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono Nerd Font Mono"
 style = "Bold"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono Nerd Font Mono"
 style = "Italic"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono Nerd Font Mono"
 style = "Bold Italic"
 
 [selection]

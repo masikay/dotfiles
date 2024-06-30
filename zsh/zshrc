@@ -83,8 +83,9 @@ zstyle ':fzf-tab:complete::__zoxide_z:*' fzf-preview 'ls --color $realpath'
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 
-# Flash neofetch
-neofetch
+# Flash specs
+# neofetch
+catnap -d arch
 
 # Starship prompt
 eval "$(starship init zsh)"

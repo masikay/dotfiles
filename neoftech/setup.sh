@@ -8,7 +8,7 @@ cd "$DIR"
 . ../scripts/functions.sh
 
 SOURCE="$(realpath .)"
-DESTINATION="$(realpath ~/.config/kitty)"
+DESTINATION="$(realpath ~/.config/neofetch)"
 
 info "Setting up neofetch..."
 create_dir $DESTINATION
