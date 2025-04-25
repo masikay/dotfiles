@@ -1,6 +1,11 @@
+adobe-source-han-sans-cn-fonts
+adobe-source-han-sans-kr-fonts
+adobe-source-han-sans-jp-fonts
 alacritty
+awesome-terminal-fonts
 bat
 btop
+catnap
 eza
 fd-find
 github-cli
@@ -9,7 +14,9 @@ kitty
 mc
 neofetch
 neovim
+noto-color-emoji-fontconfig
 pkgfile
+powerline-fonts
 python3
 python-pip
 reflector

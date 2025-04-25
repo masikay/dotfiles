@@ -85,7 +85,7 @@ eval "$(zoxide init zsh)"
 
 # Flash specs
 # neofetch
-catnap -d arch
+catnap
 
 # Starship prompt
 eval "$(starship init zsh)"
