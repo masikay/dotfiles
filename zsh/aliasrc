@@ -11,11 +11,24 @@ else
 	alias lart="ls -lart"
 fi
 
+
+
 alias la="ls -a"
 alias ll="ls -l"
 
 # Replace some more things with better alternatives
-alias cat='bat --style header --style snip --style changes --style header'
+BAT=$(which bat)
+if ! [[ "$BAT" =~ ".*not found" ]]; then
+    alias cat='bat --style header --style snip --style changes --style header'
+else
+    BAT=$(which batcat)
+    if ! [[ "$BAT" =~ ".*not found" ]]; then
+        alias bat=batcat
+        alias cat='batcat --style header --style snip --style changes --style header'
+    fi
+fi
+
+
 
 
 # Quick Edits

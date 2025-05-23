@@ -16,14 +16,5 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] 
 sudo apt update && sudo apt -y upgrade
 sudo apt -y install $(cat pkglist)
 
-substep_info "Installing lsd ..."
-LSD_VERSION=$(curl -s "https://api.github.com/repos/lsd-rs/lsd/releases/latest" | grep -Po '"tag_name": "\vK[0-9.]+')
-curl -Lo lsd.deb "https://github.com/lsd-rs/lsd/releases/latest/download/lsd_${LSD_VERSION}_amd64.deb"
-sudo dpkg -i lsd.deb
-rm -rf lsd.deb
-
-substep_info "Adding user $(USER) to docker group"
-sudo usermod -aG docker $USER
-
 success "Finished installing Debian/Ubuntu packages."
 

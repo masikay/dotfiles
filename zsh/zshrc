@@ -80,12 +80,36 @@ zstyle ':fzf-tab:complete::__zoxide_z:*' fzf-preview 'ls --color $realpath'
 [[ ! -f $ZDOTDIR/.aliasrc ]] || source $ZDOTDIR/.aliasrc
 
 # Shell integrations
-eval "$(fzf --zsh)"
+# fzf
+
+FZF_TARGET_VERSION="0.48.0"
+
+# Get installed fzf version (if installed)
+FZF_INSTALLED_VERSION=$(fzf --version 2>/dev/null | awk '{print $1}')
+
+if [[ -z "$FZF_INSTALLED_VERSION" ]]; then
+  echo "fzf is not installed."
+else
+  # Compare versions using sort -V
+  if [[ "$(printf '%s\n' "$FZF_TARGET_VERSION" "$FZF_INSTALLED_VERSION" | sort -V | head -n1)" = "$FZF_TARGET_VERSION" ]]; then
+    source <(fzf --zsh)
+  else
+   source /usr/share/doc/fzf/examples/key-bindings.zsh
+   source /usr/share/doc/fzf/examples/completion.zsh
+  fi
+fi
+
+
+# zoxide
 eval "$(zoxide init zsh)"
 
 # Flash specs
-# neofetch
-catnap
+CATNAP=$(which catnap)
+if ! [[ $CATNAP =~ "not found" ]]; then
+  catnap
+else
+  neofetch
+fi
 
 # Starship prompt
 eval "$(starship init zsh)"
