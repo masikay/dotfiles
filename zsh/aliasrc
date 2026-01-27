@@ -40,3 +40,11 @@ alias xz="exec zsh"
 
 # Get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
+
+# if .aliasrc.local exists, execute it
+# Check if .aliasrc.local exists in the user's home directory
+if [[ -f "$ZDOTDIR/.aliasrc.local" ]]; then
+    # Source the file (execute in the current shell)
+    source "$ZDOTDIR/.aliasrc.local"
+fi
+
