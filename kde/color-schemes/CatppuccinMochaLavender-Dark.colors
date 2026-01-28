@@ -1,0 +1,212 @@
+# SPDX-FileCopyrightText: Andrew Lake <jamboarder@gmail.com>
+# SPDX-FileCopyrightText: Marco Martin <notmart@gmail.com>
+# SPDX-FileCopyrightText: Nate Graham <nate@kde.org>
+# SPDX-FileCopyrightText: Noah Davis <noahadvs@gmail.com>
+# SPDX-FileCopyrightText: Neal Gompa <ngompa@kde.org>
+# SPDX-FileCopyrightText: David Redondo <kde@david-redondo.de>
+# SPDX-FileCopyrightText: Thomas Duckworth <tduck973564@gmail.com>
+# SPDX-License-Identifier: LGPL-2.0-or-later
+
+# Derived from BreezeDark.colors and remapped to Catppuccin Mocha palette (Lavender accent), with darker base backgrounds.
+
+[ColorEffects:Disabled]
+Color=108,112,134
+ColorAmount=0
+ColorEffect=0
+ContrastAmount=0.65
+ContrastEffect=1
+IntensityAmount=0.1
+IntensityEffect=2
+
+[ColorEffects:Inactive]
+ChangeSelectionColor=true
+Color=127,132,156
+ColorAmount=0.025
+ColorEffect=2
+ContrastAmount=0.1
+ContrastEffect=2
+Enable=false
+IntensityAmount=0
+IntensityEffect=0
+
+[Colors:Button]
+BackgroundAlternate=73,75,94
+BackgroundNormal=54,55,74
+DecorationFocus=180,190,254
+DecorationHover=180,190,254
+ForegroundActive=180,190,254
+ForegroundInactive=166,173,200
+ForegroundLink=180,190,254
+ForegroundNegative=243,139,168
+ForegroundNeutral=250,179,135
+ForegroundNormal=205,214,244
+ForegroundPositive=166,227,161
+ForegroundVisited=203,166,247
+
+[Colors:Complementary]
+BackgroundAlternate=54,55,74
+BackgroundNormal=19,19,30
+DecorationFocus=180,190,254
+DecorationHover=180,190,254
+ForegroundActive=180,190,254
+ForegroundInactive=166,173,200
+ForegroundLink=180,190,254
+ForegroundNegative=243,139,168
+ForegroundNeutral=250,179,135
+ForegroundNormal=205,214,244
+ForegroundPositive=166,227,161
+ForegroundVisited=203,166,247
+
+[Colors:Header]
+BackgroundAlternate=19,19,30
+BackgroundNormal=19,19,30
+DecorationFocus=180,190,254
+DecorationHover=180,190,254
+ForegroundActive=180,190,254
+ForegroundInactive=166,173,200
+ForegroundLink=180,190,254
+ForegroundNegative=243,139,168
+ForegroundNeutral=250,179,135
+ForegroundNormal=205,214,244
+ForegroundPositive=166,227,161
+ForegroundVisited=203,166,247
+
+[Colors:Header][Inactive]
+BackgroundAlternate=26,26,40
+BackgroundNormal=26,26,40
+DecorationFocus=180,190,254
+DecorationHover=180,190,254
+ForegroundActive=186,194,222
+ForegroundInactive=166,173,200
+ForegroundLink=180,190,254
+ForegroundNegative=243,139,168
+ForegroundNeutral=250,179,135
+ForegroundNormal=205,214,244
+ForegroundPositive=166,227,161
+ForegroundVisited=203,166,247
+
+[Colors:Selection]
+BackgroundAlternate=137,180,250
+BackgroundNormal=180,190,254
+DecorationFocus=180,190,254
+DecorationHover=180,190,254
+ForegroundActive=30,30,46
+ForegroundInactive=166,173,200
+ForegroundLink=249,226,175
+ForegroundNegative=243,139,168
+ForegroundNeutral=250,179,135
+ForegroundNormal=30,30,46
+ForegroundPositive=166,227,161
+ForegroundVisited=203,166,247
+
+[Colors:Tooltip]
+BackgroundAlternate=35,35,52
+BackgroundNormal=54,55,74
+DecorationFocus=180,190,254
+DecorationHover=180,190,254
+ForegroundActive=180,190,254
+ForegroundInactive=166,173,200
+ForegroundLink=180,190,254
+ForegroundNegative=243,139,168
+ForegroundNeutral=250,179,135
+ForegroundNormal=205,214,244
+ForegroundPositive=166,227,161
+ForegroundVisited=203,166,247
+
+[Colors:View]
+BackgroundAlternate=35,35,52
+BackgroundNormal=35,35,52
+DecorationFocus=180,190,254
+DecorationHover=180,190,254
+ForegroundActive=180,190,254
+ForegroundInactive=166,173,200
+ForegroundLink=180,190,254
+ForegroundNegative=243,139,168
+ForegroundNeutral=250,179,135
+ForegroundNormal=205,214,244
+ForegroundPositive=166,227,161
+ForegroundVisited=203,166,247
+
+[Colors:Window]
+BackgroundAlternate=26,26,40
+BackgroundNormal=19,19,30
+DecorationFocus=180,190,254
+DecorationHover=180,190,254
+ForegroundActive=180,190,254
+ForegroundInactive=166,173,200
+ForegroundLink=180,190,254
+ForegroundNegative=243,139,168
+ForegroundNeutral=250,179,135
+ForegroundNormal=205,214,244
+ForegroundPositive=166,227,161
+ForegroundVisited=203,166,247
+
+[General]
+ColorScheme=CatppuccinMochaLavender-Dark
+Name=Catppuccin Mocha Lavender (Dark)
+Name[ar]=Catppuccin Mocha Lavender (Dark)
+Name[az]=Catppuccin Mocha Lavender (Dark)
+Name[bg]=Catppuccin Mocha Lavender (Dark)
+Name[bs]=Catppuccin Mocha Lavender (Dark)
+Name[ca]=Catppuccin Mocha Lavender (Dark)
+Name[ca@valencia]=Catppuccin Mocha Lavender (Dark)
+Name[cs]=Catppuccin Mocha Lavender (Dark)
+Name[da]=Catppuccin Mocha Lavender (Dark)
+Name[de]=Catppuccin Mocha Lavender (Dark)
+Name[el]=Catppuccin Mocha Lavender (Dark)
+Name[en_GB]=Catppuccin Mocha Lavender (Dark)
+Name[eo]=Catppuccin Mocha Lavender (Dark)
+Name[es]=Catppuccin Mocha Lavender (Dark)
+Name[et]=Catppuccin Mocha Lavender (Dark)
+Name[eu]=Catppuccin Mocha Lavender (Dark)
+Name[fi]=Catppuccin Mocha Lavender (Dark)
+Name[fr]=Catppuccin Mocha Lavender (Dark)
+Name[gl]=Catppuccin Mocha Lavender (Dark)
+Name[he]=Catppuccin Mocha Lavender (Dark)
+Name[hi]=Catppuccin Mocha Lavender (Dark)
+Name[hu]=Catppuccin Mocha Lavender (Dark)
+Name[ia]=Catppuccin Mocha Lavender (Dark)
+Name[id]=Catppuccin Mocha Lavender (Dark)
+Name[is]=Catppuccin Mocha Lavender (Dark)
+Name[it]=Catppuccin Mocha Lavender (Dark)
+Name[ja]=Catppuccin Mocha Lavender (Dark)
+Name[ka]=Catppuccin Mocha Lavender (Dark)
+Name[ko]=Catppuccin Mocha Lavender (Dark)
+Name[lt]=Catppuccin Mocha Lavender (Dark)
+Name[lv]=Catppuccin Mocha Lavender (Dark)
+Name[nb]=Catppuccin Mocha Lavender (Dark)
+Name[nl]=Catppuccin Mocha Lavender (Dark)
+Name[nn]=Catppuccin Mocha Lavender (Dark)
+Name[pa]=Catppuccin Mocha Lavender (Dark)
+Name[pl]=Catppuccin Mocha Lavender (Dark)
+Name[pt]=Catppuccin Mocha Lavender (Dark)
+Name[pt_BR]=Catppuccin Mocha Lavender (Dark)
+Name[ro]=Catppuccin Mocha Lavender (Dark)
+Name[ru]=Catppuccin Mocha Lavender (Dark)
+Name[sa]=Catppuccin Mocha Lavender (Dark)
+Name[sk]=Catppuccin Mocha Lavender (Dark)
+Name[sl]=Catppuccin Mocha Lavender (Dark)
+Name[sr]=Catppuccin Mocha Lavender (Dark)
+Name[sr@ijekavian]=Catppuccin Mocha Lavender (Dark)
+Name[sr@ijekavianlatin]=Catppuccin Mocha Lavender (Dark)
+Name[sr@latin]=Catppuccin Mocha Lavender (Dark)
+Name[sv]=Catppuccin Mocha Lavender (Dark)
+Name[ta]=Catppuccin Mocha Lavender (Dark)
+Name[tg]=Catppuccin Mocha Lavender (Dark)
+Name[tr]=Catppuccin Mocha Lavender (Dark)
+Name[uk]=Catppuccin Mocha Lavender (Dark)
+Name[zh_CN]=Catppuccin Mocha Lavender (Dark)
+Name[zh_TW]=Catppuccin Mocha Lavender (Dark)
+shadeSortColumn=true
+
+[KDE]
+contrast=4
+
+[WM]
+activeBackground=19,19,30
+activeBlend=205,214,244
+activeForeground=205,214,244
+inactiveBackground=26,26,40
+inactiveBlend=166,173,200
+inactiveForeground=166,173,200
+
