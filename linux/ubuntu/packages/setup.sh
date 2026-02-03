@@ -5,6 +5,10 @@ cd "$DIR"
 
 . ../../../scripts/functions.sh
 
+if ! confirm_install "Debian/Ubuntu packages"; then
+    exit 0
+fi
+
 COMMENT=\#*
 
 sudo -v

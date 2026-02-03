@@ -5,6 +5,10 @@ cd "$DIR"
 
 . ../../../scripts/functions.sh
 
+if ! confirm_install "Arch packages"; then
+    exit 0
+fi
+
 COMMENT=\#*
 
 sudo -v

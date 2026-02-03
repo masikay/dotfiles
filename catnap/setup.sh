@@ -7,6 +7,10 @@ cd "$DIR"
 
 . ../scripts/functions.sh
 
+if ! confirm_install "catnap"; then
+    exit 0
+fi
+
 SOURCE="$(realpath .)"
 DESTINATION="$(realpath ~/.config/catnat)"
 

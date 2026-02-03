@@ -1,4 +1,0 @@
-pipenv
-pycodestyle
-pylint
-pylint-django

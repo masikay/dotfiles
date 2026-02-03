@@ -56,14 +56,10 @@ else
     SKIP="macos"
 fi
 
-if [ "$OS" == "macos" -o "$OS" == "arch" -o "$OS" == "ubuntu" -o "$OS" == "fedora" ]; then
-    ./packages/setup.sh
-fi
-
-find * -name "setup.sh" -not -wholename "*packages*" -not -wholename "$SKIP*" | while read setup; do
-    echo $setup
-    ./$setup
-done
+while IFS= read -r setup; do
+    echo "$setup"
+    "./$setup"
+done < <(find * -name "setup.sh" -not -wholename "*packages*" -not -wholename "$SKIP*")
 
 SOURCE=$(realpath .)
 DESTINATION=$(realpath ~)

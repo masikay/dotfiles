@@ -97,6 +97,8 @@ else
    source /usr/share/doc/fzf/examples/key-bindings.zsh
    source /usr/share/doc/fzf/examples/completion.zsh
   fi
+  # cattpuccin mocha theme for fzf
+  [[ -s "$HOME/.config/fzf/catppuccin-fzf-mocha.sh" ]] && source "$HOME/.config/fzf/catppuccin-fzf-mocha.sh"
 fi
 
 # zoxide
@@ -112,6 +114,9 @@ if ! [[ $CATNAP =~ "not found" ]]; then
 else
   neofetch
 fi
+
+#use bat as pager for man
+export MANPAGER="bat -plman"
 
 # Starship prompt
 eval "$(starship init zsh)"

@@ -101,3 +101,77 @@ create_dir() {
         mkdir -p $dir
     fi
 }
+
+confirm_install() {
+    # Usage:
+    #   if confirm_install "zsh"; then ...; else exit 0; fi
+    #
+    # Args:
+    #   $1: label shown in the prompt (defaults to current directory name)
+    #   $2: default answer when user presses Enter: Y or N (default: Y)
+    #
+    # Env:
+    #   DOTFILES_ASSUME_YES=1  -> always continue
+    #   DOTFILES_ASSUME_NO=1   -> always skip
+
+    local label="${1:-${PWD##*/}}"
+    local default="${2:-Y}"
+    local reply=""
+    local hint
+    local io_in="/dev/stdin"
+    local io_out="/dev/stdout"
+
+    # Normalize default
+    case "$default" in
+        y|Y) default="Y" ;;
+        *)   default="N" ;;
+    esac
+
+    if [ "$default" = "Y" ]; then
+        hint="[Y/n]"
+    else
+        hint="[y/N]"
+    fi
+
+    if [ -n "${DOTFILES_ASSUME_YES:-}" ]; then
+        substep_info "Install ${label}? ${hint} (auto-yes)"
+        substep_success "Continuing with ${label}."
+        return 0
+    fi
+
+    if [ -n "${DOTFILES_ASSUME_NO:-}" ]; then
+        substep_info "Install ${label}? ${hint} (auto-no)"
+        substep_info "Skipping ${label}."
+        return 1
+    fi
+
+    # Read from the terminal so prompts work even if bootstrap uses a pipe.
+    if [ -r /dev/tty ] && [ -w /dev/tty ]; then
+        io_in="/dev/tty"
+        io_out="/dev/tty"
+    else
+        substep_info "Install ${label}? ${hint} (no tty; default ${default})"
+        [ "$default" = "Y" ] && return 0 || return 1
+    fi
+
+    while true; do
+        substep_info "Install ${label}? ${hint}" >"$io_out"
+        IFS= read -r reply <"$io_in" || reply=""
+
+        [ -z "$reply" ] && reply="$default"
+
+        case "$reply" in
+            y|Y|yes|YES|Yes)
+                substep_success "Continuing with ${label}." >"$io_out"
+                return 0
+                ;;
+            n|N|no|NO|No)
+                substep_info "Skipping ${label}." >"$io_out"
+                return 1
+                ;;
+            *)
+                substep_error "Please answer 'y' or 'n'." >"$io_out"
+                ;;
+        esac
+    done
+}
