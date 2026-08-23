@@ -5,23 +5,6 @@ cd "$DIR"
 
 . scripts/functions.sh
 
-os_family() {
-    OS=$(uname)
-    if [ "${OS}" = "Darwin" ]; then
-        OS_FAMILY=macos
-    elif [ "${OS}" = "Linux" ]; then
-        OS_FAMILY=$(grep -E "^ID=" /etc/os-release |  cut -d= -f2 | sed "s/\"//g")
-    elif echo ${OS} | grep CYGWIN_NT; then
-        OS_FAMILY=cygwin
-    elif echo ${OS} | grep MSYS_NT; then
-        OS_FAMILY=mingw
-    else
-        OS_FAMILY=unknown
-    fi
-
-    echo ${OS_FAMILY}
-}
-
 # Check if running on macOS or Linux (and which Linux distro/derivates)
 OS=$(os_family)
 
@@ -36,16 +19,6 @@ fi
 
 SKIP=""
 SKIP_DOCKER="-not -wholename \"docker*\""
-
-# Fedora derivates
-if [ "$OS" == "nobara" ]; then
-    OS="fedora"
-fi
-
-# Arch derivates
-if [ "$OS" == "manjaro" -o $OS == "endeavouros" -o $OS == "cachyos" -o $OS == "garuda" ]; then
-    OS="arch"
-fi
 
 # Package control must be executed first in order for the rest to work
 if [ "$OS" == "macos" ]; then

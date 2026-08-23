@@ -12,15 +12,20 @@ if ! confirm_install "catnap"; then
 fi
 
 SOURCE="$(realpath .)"
-DESTINATION="$(realpath ~/.config/catnat)"
+DESTINATION="$(realpath ~/.config/catnap)"
 
 info "Setting up catnap..."
-create_dir $DESTINATION
 
-find * -name "*.toml" | while read fn; do
+curl -Lo install.sh https://raw.githubusercontent.com/iinsertNameHere/catnap/main/install.sh
+echo "y" | sudo bash install.sh
+rm install.sh
+
+rm -f $DESTINATION/config.cat
+chown -R $USER $DESTINATION/*
+
+find * -name "*.cat" | while read fn; do
     symlink "$SOURCE/$fn" "$DESTINATION/$fn"
 done
-clear_broken_symlinks "$DESTINATION"
 
 success "Successfully set up catnap."
 
