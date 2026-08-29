@@ -3,11 +3,11 @@ alias -g vim="nvim"
 
 EZA=$(which eza)
 if ! [[ "$EZA" =~ ".*not found" ]]; then
-    alias ls="$EZA --group-directories-first --color=auto --icons -F"
+    alias ls="$EZA --group-directories-first --color=auto --icons -F=auto"
     alias tree="$EZA --color=auto --icons --tree"
 	alias lart="ls -larF -snew"
 else
-    alias ls="ls --group-directories-first --color=auto -F"
+    alias ls="ls --group-directories-first --color=auto --icons -F=auto"
 	alias lart="ls -lart"
 fi
 
