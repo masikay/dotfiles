@@ -11,7 +11,7 @@ import "themes/catppuccin-mocha.cat"
 
 $layout       = "inline"
 $border_style = "single"
-$border_color = $yellow
+$border_color = $red
 
 ; Overwrite the distroid. Empty => Use autodetect
 $distroid     = ""

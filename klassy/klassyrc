@@ -21,4 +21,4 @@ WindowCornerRadius=8
 [WindowOutlineStyle]
 WindowOutlineAccentColorOpacityActive=100
 WindowOutlineStyleActive=WindowOutlineAccentColor
-WindowOutlineThickness=2.5
+WindowOutlineThickness=2
