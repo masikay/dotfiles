@@ -82,23 +82,52 @@ zstyle ':fzf-tab:complete::__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Shell integrations
 # fzf
 
-FZF_TARGET_VERSION="0.48.0"
+FZF_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fzf"
 
-# Get installed fzf version (if installed)
-FZF_INSTALLED_VERSION=$(fzf --version 2>/dev/null | awk '{print $1}')
+# Add fzf binary to PATH if it exists locally
+if [[ -d "$FZF_DIR/bin" ]] && [[ ":$PATH:" != *":$FZF_DIR/bin:"* ]]; then
+  export PATH="$FZF_DIR/bin:$PATH"
+fi
 
-if [[ -z "$FZF_INSTALLED_VERSION" ]]; then
-  echo "fzf is not installed."
-else
-  # Compare versions using sort -V
-  if [[ "$(printf '%s\n' "$FZF_TARGET_VERSION" "$FZF_INSTALLED_VERSION" | sort -V | head -n1)" = "$FZF_TARGET_VERSION" ]]; then
-    source <(fzf --zsh)
-  else
-   source /usr/share/doc/fzf/examples/key-bindings.zsh
-   source /usr/share/doc/fzf/examples/completion.zsh
+# Install latest fzf only if the command is genuinely missing
+if ! command -v fzf &>/dev/null; then
+  echo "fzf not found. Installing latest release..."
+  if [ ! -d "$FZF_DIR" ]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$FZF_DIR"
   fi
-  # cattpuccin mocha theme for fzf
+  "$FZF_DIR/install" --bin --no-update-rc --no-completion --no-key-bindings
+  export PATH="$FZF_DIR/bin:$PATH"
+fi
+
+# Load fzf shell integration
+if command -v fzf &>/dev/null; then
+  source <(fzf --zsh)
+  
+  # Catppuccin Mocha theme for fzf
   [[ -s "$HOME/.config/fzf/catppuccin-fzf-mocha.sh" ]] && source "$HOME/.config/fzf/catppuccin-fzf-mocha.sh"
+fi
+
+# Install latest eza if not installed
+if ! command -v eza &>/dev/null; then
+  echo "eza not found. Installing latest release..."
+  mkdir -p "$HOME/.local/bin"
+
+  ARCH="$(uname -m)"
+  case "$ARCH" in
+    x86_64)  EZA_ARCH="x86_64-unknown-linux-gnu" ;;
+    aarch64) EZA_ARCH="aarch64-unknown-linux-gnu" ;;
+    armv7l)  EZA_ARCH="arm-unknown-linux-gnueabihf" ;;
+    *)       EZA_ARCH="" ;;
+  esac
+
+  if [[ -n "$EZA_ARCH" ]]; then
+    TAR_URL="https://github.com/eza-community/eza/releases/latest/download/eza_${EZA_ARCH}.tar.gz"
+    # Extract binary via wildcard or fallback directly to ~/.local/bin
+    curl -fsSL "$TAR_URL" | tar -xz -C "$HOME/.local/bin" --wildcards '*eza' 2>/dev/null || \
+    curl -fsSL "$TAR_URL" | tar -xz -C "$HOME/.local/bin"
+    
+    chmod +x "$HOME/.local/bin/eza" 2>/dev/null
+  fi
 fi
 
 # zoxide
@@ -130,3 +159,5 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [[ ! -d ~/.spicetify ]] || export PATH=$PATH:~/.spicetify
+
+export PATH=$PATH:/home/pavel/.spicetify

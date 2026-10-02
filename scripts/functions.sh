@@ -192,6 +192,11 @@ os_family() {
 
     OS=${OS_FAMILY}
 
+	# Ubuntu derivates
+	if [ "$OS" == "pop" ]; then
+		OS="ubuntu"
+	fi
+
 	# Fedora derivates
 	if [ "$OS" == "nobara" ]; then
 		OS="fedora"
