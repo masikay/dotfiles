@@ -11,11 +11,11 @@ if ! confirm_install "btop"; then
     exit 0
 fi
 
+info "Setting up btop..."
+create_dir ~/.config/btop/themes
+
 SOURCE="$(realpath .)"
 DESTINATION="$(realpath ~/.config/btop/themes)"
-
-info "Setting up btop..."
-create_dir $DESTINATION
 
 find * -name "*.theme" | while read fn; do
     symlink "$SOURCE/$fn" "$DESTINATION/$fn"
