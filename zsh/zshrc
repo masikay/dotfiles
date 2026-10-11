@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-#fi
-
 # Set the directory where to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -17,15 +10,11 @@ fi
 # Source/load zinit
 source "$ZINIT_HOME/zinit.zsh"
 
-# Add in Powerlevel10k
-# zinit ice depth=1; zinit light romkatv/powerlevel10k
-
 # If not installed yet, install Starship
 STARSHIP=$(which starship)
 if [[ $STARSHIP =~ "not found" ]]; then
   curl -sS https://starship.rs/install.sh | sh
 fi
-
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -43,9 +32,6 @@ zinit snippet OMZP::command-not-found
 autoload -Uz compinit && compinit
 
 zinit cdreplay -q
-
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-#[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 # Keybindings
 bindkey -e
@@ -137,15 +123,62 @@ eval "$(zoxide init zsh)"
 [[ ! -f $ZDOTDIR/.zshrc.local ]] || source $ZDOTDIR/.zshrc.local
 
 # Flash specs
-CATNAP=$(which catnap)
-if ! [[ $CATNAP =~ "not found" ]]; then
-  catnap
-else
-  neofetch
-fi
+# CATNAP=$(which catnap)
+# if ! [[ $CATNAP =~ "not found" ]]; then
+#   catnap
+# else
+#   neofetch
+# fi
 
 #use bat as pager for man
 export MANPAGER="bat -plman"
+
+# Command duration for the starship custom module (seconds.tenths, growing to minutes/hours)
+zmodload zsh/datetime
+typeset -g _cmd_duration_start=0
+typeset -g STARSHIP_CMD_DURATION=""
+
+_cmd_duration_preexec() {
+  _cmd_duration_start=$EPOCHREALTIME
+}
+
+_cmd_duration_precmd() {
+  local elapsed=0
+  if (( _cmd_duration_start != 0 )); then
+    elapsed=$(( EPOCHREALTIME - _cmd_duration_start ))
+  fi
+  _cmd_duration_start=0
+
+  if (( elapsed < 2 )); then
+    unset STARSHIP_CMD_DURATION
+    return
+  fi
+
+  local secs_int=${elapsed%%.*}
+  local tenth=${elapsed#*.}
+  [[ "$tenth" == "$elapsed" ]] && tenth=0 || tenth=${tenth:0:1}
+
+  local h=$(( secs_int / 3600 ))
+  local m=$(( (secs_int % 3600) / 60 ))
+  local s=$(( secs_int % 60 ))
+
+  if (( h > 0 )); then
+    STARSHIP_CMD_DURATION=$(printf '%dh%dm%d.%ds' "$h" "$m" "$s" "$tenth")
+  elif (( m > 0 )); then
+    STARSHIP_CMD_DURATION=$(printf '%dm%d.%ds' "$m" "$s" "$tenth")
+  else
+    STARSHIP_CMD_DURATION=$(printf '%d.%ds' "$s" "$tenth")
+  fi
+  export STARSHIP_CMD_DURATION
+
+  if (( elapsed >= 45 )) && command -v notify-send &>/dev/null; then
+    notify-send "Command finished" "took $STARSHIP_CMD_DURATION" &>/dev/null
+  fi
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec _cmd_duration_preexec
+add-zsh-hook precmd _cmd_duration_precmd
 
 # Starship prompt
 eval "$(starship init zsh)"
@@ -159,5 +192,3 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [[ ! -d ~/.spicetify ]] || export PATH=$PATH:~/.spicetify
-
-export PATH=$PATH:/home/pavel/.spicetify

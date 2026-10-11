@@ -22,5 +22,5 @@ find * -name "*.theme" | while read fn; do
 done
 clear_broken_symlinks "$DESTINATION"
 
-success "Successfully set up alacritty."
+success "Successfully set up btop."
 
