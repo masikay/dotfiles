@@ -1,171 +1,175 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
 $os\
+$username\
 $directory\
 $git_branch\
 $git_status\
 $fill\
-$python\
-$lua\
-$nodejs\
-$golang\
-$haskell\
+$c\
 $rust\
-$ruby\
-$package\
-$aws\
-$docker_context\
-$jobs\
+$golang\
+$nodejs\
+$bun\
+$php\
+$java\
+$kotlin\
+$haskell\
+$python\
+$conda\
+$time\
 $cmd_duration\
 $line_break\
 $character"""
 
-add_newline = true
 palette = 'catppuccin_mocha'
 
+[fill]
+symbol = " "
+
 [os]
-disabled = true
-style = "fg:blue"
+disabled = false
+style = "fg:mauve"
 
 [os.symbols]
-AIX = " "
-AlmaLinux = " "
-Alpaquita = " "
-Alpine = " "
-ALTLinux = " "
-Amazon = " "
-Android = " "
-AOSC = " "
-Arch = " "
-Artix = " "
-Bluefin = " "
-CachyOS = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Elementary = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = " "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = " "
-InstantOS = " "
-Ios = "󰀷 "
-Kali = " "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-Nobara = " "
-OpenBSD = " "
-OpenCloudOS = " "
-openEuler = " "
-openSUSE = " "
-OracleLinux = "󰺡 "
-PikaOS = " "
-Pop = " "
-Raspbian = " "
-Redhat = "󱄛 "
-RedHatEnterprise = "󱄛 "
-Redox = "󰀘 "
-RockyLinux = " "
-Solus = " "
-SUSE = " "
-Ubuntu = " "
-Ultramarine = " "
-Unknown = " "
-Uos = " "
-Void = " "
-Windows = "󰍲 "
-Zorin = " "
+Windows = ""
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+AOSC = ""
+Arch = "󰣇"
+Artix = "󰣇"
+CachyOS = "󰣇"
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+
+[username]
+show_always = false
+style_user = "fg:teal"
+style_root = "fg:crust"
+format = '[ $user]($style)'
 
 [directory]
-style = 'bold fg:blue'
-format = '[$path ]($style)'
+style = "bold fg:blue"
+format = "[ $path ]($style)"
 truncation_length = 3
-truncation_symbol = '…/'
-truncate_to_repo = false
+truncation_symbol = "…/"
 
 [directory.substitutions]
-'Documents' = '󰈙'
-'Downloads' = ' '
-'Music' = ' '
-'Pictures' = ' '
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+"repos" = "󰲋 "
 
 [git_branch]
-style = 'fg:teal'
-symbol = ' '
-format = '[on](text) [$symbol$branch ]($style)'
+symbol = ""
+style = "fg:teal"
+format = '[$symbol $branch]($style)'
 
 [git_status]
-style = 'fg:red'
-format = '([$all_status$ahead_behind]($style) )'
-
-[fill]
-symbol = ' '
-
-[python]
-style = 'teal'
-symbol = ' '
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-pyenv_version_name = true
-pyenv_prefix = ''
-
-[lua]
-symbol = ' '
+style = "fg:red"
+format = '[ (\[$all_status$ahead_behind\])]($style)'
 
 [nodejs]
-style = 'blue'
-symbol = ' '
+symbol = ""
+style = "fg:green"
+format = '[ $symbol( $version) ]($style)'
 
-[golang]
-style = 'blue'
-symbol = ' '
+[bun]
+symbol = ""
+style = "fg:green"
+format = '[ $symbol( $version) ]($style)'
 
-[haskell]
-style = 'blue'
-symbol = ' '
+[c]
+symbol = " "
+style = "fg:green"
+format = '[ $symbol( $version) ]($style)'
 
 [rust]
-style = 'orange'
-symbol = ' '
+symbol = ""
+style = "fg:green"
+format = '[ $symbol( $version) ]($style)'
 
-[ruby]
-style = 'blue'
-symbol = ' '
+[golang]
+symbol = ""
+style = "fg:green"
+format = '[ $symbol( $version) ]($style)'
 
-[package]
-symbol = '󰏗 '
+[php]
+symbol = ""
+style = "fg:green"
+format = '[ $symbol( $version) ]($style)'
 
-[aws]
-symbol = ' '
-style = 'yellow'
-format = '[$symbol($profile )(\[$duration\] )]($style)'
+[java]
+symbol = " "
+style = "fg:green"
+format = '[ $symbol( $version) ]($style)'
+
+[kotlin]
+symbol = ""
+style = "fg:green"
+format = '[ $symbol( $version) ]($style)'
+
+[haskell]
+symbol = ""
+style = "fg:green"
+format = '[ $symbol( $version) ]($style)'
+
+[python]
+symbol = ""
+style = "fg:green"
+format = '[ $symbol( $version) ]($style)'
 
 [docker_context]
-symbol = ' '
-style = 'fg:sapphire'
-format = '[$symbol]($style) $path'
-detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
-detect_extensions = ['Dockerfile']
+symbol = ""
+style = "fg:sapphire"
+format = '[ $symbol( $version) ]($style)'
 
-[jobs]
-symbol = ' '
-style = 'red'
-number_threshold = 1
-format = '[$symbol]($style)'
+[conda]
+symbol = "  "
+style = "fg:sapphire"
+format = '[ $symbol( $version) ]($style)'
+ignore_base = false
+
+[time]
+disabled = true
+time_format = "%R"
+style = "fg:lavender"
+format = '[  $time ]($style)'
+
+[line_break]
+disabled = false
+
+[character]
+disabled = false
+success_symbol = '[󱞪](bold fg:green)'
+error_symbol = '[󱞪](bold fg:red)'
+vimcmd_symbol = '[󱞨](bold fg:green)'
+vimcmd_replace_one_symbol = '[󱞨](bold fg:lavender)'
+vimcmd_replace_symbol = '[󱞨](bold fg:lavender)'
+vimcmd_visual_symbol = '[󱞨](bold fg:yellow)'
 
 [cmd_duration]
-min_time = 500
-style = 'fg:overlay2'
-format = '[$duration]($style)'
+disabled = false
+show_milliseconds = false
+format = " in $duration "
+style = "bg:lavender"
+show_notifications = true
+min_time_to_notify = 45000
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
@@ -278,29 +282,3 @@ surface0 = "#363a4f"
 base = "#24273a"
 mantle = "#1e2030"
 crust = "#181926"
-
-[palettes.nord]
-dark_blue = '#5E81AC'
-blue = '#81A1C1'
-teal = '#88C0D0'
-red = '#BF616A'
-orange = '#D08770'
-green = '#A3BE8C'
-yellow = '#EBCB8B'
-purple = '#B48EAD'
-gray = '#434C5E'
-black = '#2E3440'
-white='#D8DEE9'
-
-[palettes.onedark]
-dark_blue='#61afef'
-blue='#56b6c2'
-red='#e06c75'
-green='#98c379'
-purple='#c678dd'
-cyan='#56b6c2'
-orange='#be5046'
-yellow='#e5c07b'
-gray='#828997'
-white ='#abb2bf'
-black='#2c323c'
