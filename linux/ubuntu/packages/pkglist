@@ -1,9 +1,12 @@
 bat
 btop
 fd-find
+fzf
 gh
 htop
 mc
 neovim
+ripgrep
+starship
 zoxide
 zsh

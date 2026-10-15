@@ -3,9 +3,12 @@ btop
 eza
 fastfetch
 fd
+fzf
 github-cli
 htop
 mc
 neovim
+ripgrep
+starship
 zoxide
 zsh

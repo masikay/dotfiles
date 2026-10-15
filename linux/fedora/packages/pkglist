@@ -3,9 +3,12 @@ btop
 eza
 fastfetch
 fd-find
+fzf
 gh
 htop
 mc
 neovim
+ripgrep
+starship
 zoxide
 zsh

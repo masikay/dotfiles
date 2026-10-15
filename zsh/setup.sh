@@ -9,15 +9,28 @@ cd "$DIR"
 
 SOURCE="$(realpath .)"
 DESTINATION="$(realpath ~/.config/zsh)"
+STATE="$(realpath  ~/.local/state/zsh)"
+CACHE="$(realpath ~/.cache/zsh)"
+
 ZSH_PATH=$(which zsh)
 
 info "Setting up zsh shell..."
 
-symlink $SOURCE/zshenv ~/.zshenv
-create_dir $DESTINATION
+# Create directories
+create_dir "$DESTINATION"
+create_dir "$STATE"
+create_dir "$CACHE"
 
-find * -name "*rc" -o -name "*.zsh" | while read fn; do
-    symlink "$SOURCE/$fn" "$DESTINATION/.$fn"
+substep_info "Copying zshenv to /etc/zsh/zshenv"
+if sudo cp "$SOURCE/zshenv" /etc/zsh/zshenv; then
+    substep_success "Copied zshenv to /etc/zsh/zshenv"
+else
+    substep_error "Failed copying zshenv to /etc/zsh/zshenv"
+fi
+
+find . -mindepth 1 -maxdepth 1 \( -name ".*rc" -o -name ".*env" -o -name "*.zsh" -o -name "*.toml" \) | while read -r fn; do
+    fn="${fn#./}"
+    symlink "$SOURCE/$fn" "$DESTINATION/$fn"
 done
 clear_broken_symlinks "$DESTINATION"
 
@@ -51,4 +64,3 @@ if set_zsh_shell; then
 else
     error "Failed setting up zsh shell."
 fi
-
