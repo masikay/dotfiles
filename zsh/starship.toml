@@ -8,6 +8,7 @@ $git_branch\
 $git_status\
 $fill\
 $c\
+$cpp\
 $rust\
 $golang\
 $nodejs\
@@ -106,6 +107,13 @@ format = '[ $symbol( $version) ]($style)'
 symbol = " "
 style = "fg:green"
 format = '[ $symbol( $version) ]($style)'
+
+[cpp]
+disabled = false
+symbol = " "
+style = "fg:green"
+format = '[ $symbol( $version) ]($style)'
+detect_files = ["CMakeLists.txt"]
 
 [rust]
 symbol = ""
