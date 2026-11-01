@@ -21,11 +21,17 @@ create_dir "$DESTINATION"
 create_dir "$STATE"
 create_dir "$CACHE"
 
-substep_info "Copying zshenv to /etc/zsh/zshenv"
-if sudo cp "$SOURCE/zshenv" /etc/zsh/zshenv; then
-    substep_success "Copied zshenv to /etc/zsh/zshenv"
+if [ "$(os_family)" == "fedora" ]; then
+    ZSHENV_DEST=/etc/zshenv
 else
-    substep_error "Failed copying zshenv to /etc/zsh/zshenv"
+    ZSHENV_DEST=/etc/zsh/zshenv
+fi
+
+substep_info "Copying zshenv to $ZSHENV_DEST"
+if sudo cp "$SOURCE/zshenv" "$ZSHENV_DEST"; then
+    substep_success "Copied zshenv to $ZSHENV_DEST"
+else
+    substep_error "Failed copying zshenv to $ZSHENV_DEST"
 fi
 
 find . -mindepth 1 -maxdepth 1 \( -name ".*rc" -o -name ".*env" -o -name "*.zsh" -o -name "*.toml" \) | while read -r fn; do
