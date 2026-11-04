@@ -1,2 +1,5 @@
 # ignore every file named *.local anywhere in the repo (e.g. .zshrc.local, .aliasrc.local)
 **/*.local
+
+# ignore .claude
+.claude

@@ -62,10 +62,19 @@ if ! command -v fzf &>/dev/null; then
   export PATH="$FZF_DIR/bin:$PATH"
 fi
 
-# Arch & Fedora
+# Arch
 if [[ -f /usr/share/fzf/key-bindings.zsh ]]; then
   source /usr/share/fzf/key-bindings.zsh
   source /usr/share/fzf/completion.zsh
+
+# Fedora
+elif [[ -f /usr/share/fzf/shell/key-bindings.zsh ]]; then
+  source /usr/share/fzf/shell/key-bindings.zsh
+  if [[ -f /usr/share/fzf/shell/completion.zsh ]]; then
+    source /usr/share/fzf/shell/completion.zsh
+  elif [[ -f /usr/share/zsh/site-functions/_fzf ]]; then
+    source /usr/share/zsh/site-functions/_fzf
+  fi
 
 # Ubuntu
 elif [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
@@ -112,3 +121,4 @@ fi
 # =========================================================
 
 [[ ! -f $ZDOTDIR/local.zsh ]] || source $ZDOTDIR/local.zsh
+export PATH=$PATH:/home/pavel/.spicetify
